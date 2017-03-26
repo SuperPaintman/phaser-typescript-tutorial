@@ -28,10 +28,24 @@ const outputPath        = path.join(__dirname, 'dist');
 const templatePath      = path.join(__dirname, 'templates/index.ejs');
 
 /** Helpers */
+/**
+ * Determines whether an array includes a certain element.
+ * @param  {T[]}  array
+ * @param  {T}    searchElement
+ * 
+ * @return {boolean}
+ */
 function includes(array, searchElement) {
   return !!~array.indexOf(searchElement);
 }
 
+/**
+ * Create rule for `expose-loader`, to adds module to the global object with passed name.
+ * @param  {string} modulePath
+ * @param  {string} name]
+ * 
+ * @return {Object}
+ */
 function exposeRules(modulePath, name) {
   return {
     test: (path) => modulePath === path,
@@ -40,10 +54,25 @@ function exposeRules(modulePath, name) {
   };
 }
 
+/**
+ * Remove `null` elements from array
+ * @param  {T[]} array
+ * 
+ * @return {T[]}
+ */
 function filterNull(array) {
   return array.filter((item) => item !== null);
 }
 
+/**
+ * Invoke `fn` if `isIt` is true, else invoke `fail`.
+ * 
+ * @param  {boolean}  isIt
+ * @param  {function} fn
+ * @param  {function} fail
+ *
+ * @return {any}
+ */
 function only(isIt, fn, fail) {
   if (!isIt) {
     return fail !== undefined ? fail() : null;
@@ -52,6 +81,7 @@ function only(isIt, fn, fail) {
   return fn();
 }
 
+/** Helpers (based on `only`) */
 const onlyProd = (fn, fail) => only(IS_PRODUCTION, fn, fail);
 const onlyDev = (fn, fail) => only(!IS_PRODUCTION, fn, fail);
 
@@ -67,15 +97,15 @@ module.exports = {
     sourceMapFilename: '[file].map',
     publicPath: '/'
   },
-  devtool: onlyDev(() => 'source-map', () => ''),
+  devtool: onlyDev(() => 'source-map', () => ''), // Disable sourcemaps on production
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
-      pixi:   pixiPath,
-      phaser: phaserPath,
-      p2:     p2Path,
-      assets: assetsPath,
-      styles: stylesPath
+      pixi:   pixiPath,     // alias for 'pixi' library
+      phaser: phaserPath,   // alias for 'phaser' library
+      p2:     p2Path,       // alias for 'p2' library
+      assets: assetsPath,   // alias for `assets/` directory
+      styles: stylesPath    // alias for `styles/` directory
     }
   },
   plugins: filterNull([
@@ -94,36 +124,43 @@ module.exports = {
     })),
     
     /** Clean */
-    new CleanWebpackPlugin([outputPath]),
+    new CleanWebpackPlugin([outputPath]), // Clean `dist` directory
 
     /** TypeScript */
     new CheckerPlugin(),
 
     /** Images */
+    // Minimize images and svg's
     onlyProd(() => new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/
     })),
 
     /** Template */
+    // Auto generation index HTML file
     new HtmlWebpackPlugin({
       title:    'Phaser TypeScript boilerplate project',
       template: templatePath
     }),
 
     /** CSS */
+    // Extract CSS files from `styles/` directory to external CSS file
     new ExtractTextPlugin({
       filename: `css/[name]${onlyProd(() => '.[chunkhash]', () => '')}.css`
     }),
     
     /** Chunks */
+    // Create ckunks for:
+    //   * other vendor modules
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: (module) => /node_modules/.test(module.resource)
     }),
+    //   * phaser modules (p2, PIXI, phaser)
     new webpack.optimize.CommonsChunkPlugin({
       name: 'phaser',
       minChunks: (module) => includes([p2Path, pixiPath, phaserPath], module.resource)
     }),
+    //   * webpack's utils
     new webpack.optimize.CommonsChunkPlugin({
       name: 'commons'
     })
@@ -164,9 +201,9 @@ module.exports = {
       },
 
       /** JavaScript */
-      exposeRules(pixiPath, 'PIXI'),
-      exposeRules(p2Path, 'p2'),
-      exposeRules(phaserPath, 'Phaser'),
+      exposeRules(pixiPath, 'PIXI'),     // adds `PIXI` to the global object (window)
+      exposeRules(p2Path, 'p2'),         // adds `p2` to the global object (window)
+      exposeRules(phaserPath, 'Phaser'), // adds `Phaser` to the global object (window)
       {
         test: /\.ts$/,
         exclude: /node_modules/,
