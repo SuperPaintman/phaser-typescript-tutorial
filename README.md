@@ -1,5 +1,8 @@
 # Phaser Typescript Tutorial
 
+![Phaser][header-image]
+
+
 > This repo using [this boilerplate][boilerplate-url]
 
 This tutorial (based on [original Phaser tutorial][original-tutorial-url]), will learn you how to create games with **Phaser** framework, and build it using **TypeScript** and **Webpack**.
@@ -73,3 +76,4 @@ or open cloned directory in your favorite editor
 [coveralls-url]: https://coveralls.io/r/SuperPaintman/phaser-typescript-tutorial?branch=master
 [boilerplate-url]: https://github.com/SuperPaintman/phaser-typescript-boilerplate
 [original-tutorial-url]: http://phaser.io/tutorials/making-your-first-phaser-game/index
+[header-image]: README/header.png
