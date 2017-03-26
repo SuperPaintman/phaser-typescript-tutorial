@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "pretty": true
+  },
+  "files": [
+    "./node_modules/phaser/typescript/box2d.d.ts",
+    "./node_modules/phaser/typescript/p2.d.ts",
+    "./node_modules/phaser/typescript/phaser.comments.d.ts",
+    "./node_modules/phaser/typescript/pixi.comments.d.ts"
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./node_modules/@types/**/*.ts"
+  ]
+}

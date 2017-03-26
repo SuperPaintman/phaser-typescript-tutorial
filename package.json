@@ -1,0 +1,53 @@
+{
+  "name": "phaser-typescript-tutorial",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "lint": "tslint src/**/*.ts",
+    "test": "echo 'noop'",
+    "prepublish": "npm run lint && npm run build && npm run test",
+    "prepush": "npm run prepublish",
+    "precommit": "npm run lint"
+  },
+  "author": {
+    "name": "SuperPaintman",
+    "email": "SuperPaintmanDeveloper@gmail.com",
+    "url": "https://superpaintman.com/"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/",
+    "templates/",
+    "assets/"
+  ],
+  "devDependencies": {
+    "@types/node": "7.0.5",
+    "awesome-typescript-loader": "3.1.2",
+    "clean-webpack-plugin": "0.1.16",
+    "css-loader": "0.27.3",
+    "expose-loader": "0.7.3",
+    "extract-text-webpack-plugin": "2.1.0",
+    "file-loader": "0.10.1",
+    "html-webpack-plugin": "2.28.0",
+    "husky": "0.13.3",
+    "imagemin-webpack-plugin": "1.4.4",
+    "phaser": "2.6.2",
+    "style-loader": "0.16.0",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.1",
+    "tslint": "4.5.1",
+    "tslint-eslint-rules": "3.5.1",
+    "typescript": "2.1.6",
+    "webpack": "2.2.1",
+    "webpack-dev-server": "2.4.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuperPaintman/phaser-typescript-tutorial.git"
+  }
+}

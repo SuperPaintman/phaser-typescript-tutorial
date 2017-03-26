@@ -1,0 +1,95 @@
+{
+  "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
+  "rules": {
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "no-extra-semi": true,
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "no-extra-boolean-cast": true,
+    "radix": true,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "no-unused-variable": [
+      true
+    ],
+    "no-use-before-declare": true,
+    "brace-style": [
+      true,
+      "1tbs",
+      {
+        "allowSingleLine": false
+      }
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ],
+    "array-bracket-spacing": [
+      true,
+      "never"
+    ],
+    "no-consecutive-blank-lines": [
+      true,
+      2
+    ],
+    "class-name": true,
+    "curly": true,
+    "no-arg": true,
+    "no-conditional-assignment": true,
+    "no-eval": true,
+    "no-shadowed-variable": true,
+    "no-var-keyword": true,
+    "switch-default": true,
+    "triple-equals": true,
+    "use-isnan": true,
+    "eofline": true,
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
+    "no-trailing-whitespace": true,
+    "arrow-parens": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "interface-name": [
+      true,
+      "always-prefix"
+    ],
+    "jsdoc-format": true,
+    "new-parens": true,
+    "no-angle-bracket-type-assertion": true,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type",
+      "check-typecast"
+    ]
+  }
+}
