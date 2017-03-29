@@ -7,15 +7,7 @@ require('phaser');  // So, in my case, TypeScript breaks if i import it as `impo
 
 import 'styles/style.styl'; // Registering styles for the page; They will automatically inject.
 
-
-// The main state of the game
-export class MainState extends Phaser.State {
-  preload(): void { }
-
-  create(): void { }
-
-  update(): void { }
-}
+import MainState        from './states/main.state';
 
 
 // The main class of our application
